@@ -1,0 +1,31 @@
+<h6>Dashboard</h6>
+<h3>Welcome {{name}}</h3>
+<p>Choose from our drug stores</p>
+{{#if drugs}}
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Drug Name</th>
+            <th>Time Dispensed</th>
+            <th>Role</th>
+            <th>Manufacturer</th>
+            <th>Quantity</th>
+            <th>UsageCase</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each drugs}}
+        <tr>
+            <td><a href="/drugs/{{_id}}"></a>{{drugName}}</td>
+            <td>{{formatDate createdAt 'MMM Do YYYY, h:mm:ss a'}}</td>
+            <td><span class="dash-status">{{jobRole}}</span></td>
+            <td>{{Manufacturer}}</td>
+            <td>{{quantity}}</td>
+            <td>{{usageCase}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p>You have not selected any drug</p>
+{{/if}}
