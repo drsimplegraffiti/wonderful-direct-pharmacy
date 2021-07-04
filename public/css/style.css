@@ -20,3 +20,8 @@ p {
 .img-small {
     width: 180px;
 }
+
+.fa-trash {
+    float: right;
+    margin-right: 4px;
+}
