@@ -25,3 +25,8 @@ p {
     float: right;
     margin-right: 4px;
 }
+
+.btn {
+    text-align: center;
+    margin: auto;
+}
