@@ -1,0 +1,79 @@
+<h3>Edit Drugs</h3>
+<div class="row">
+    <form action="/drugs/{{drug._id}}" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="drugName" name="drugName" value="{{drug.drugName}}">
+                <label for="drugName">Drug Name</label>
+            </div>
+        </div>
+
+
+        {{!-- jobRole --}}
+        <div class="row">
+            <div class="input-field">
+                <select id="jobRole" name="jobRole">
+                    {{#select drug.jobRole}}
+                    <option value="admin" selected>Admin</option>
+                    <option value="agent">Agent</option>
+                    {{/select}}
+                </select>
+                <label for="jobRole">Role</label>
+            </div>
+        </div>
+
+        {{!-- Manufacturer --}}
+        <div class="row">
+            <div class="input-field">
+                <select id="Manufacturer" name="Manufacturer">
+                    {{#select drug.Manufacturer}}
+                    <option value="TK" selected>TK</option>
+                    <option value="Jumbo">Jumbo</option>
+                    <option value="CC">CC</option>
+                    {{/select}}
+                </select>
+                <label for="Manufacturer">Manufacturer</label>
+            </div>
+        </div>
+
+
+        {{!-- quantity --}}
+        <div class="row">
+            <div class="input-field">
+                <select id="quantity" name="quantity">
+                    {{#select drug.quantity}}
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    {{/select}}
+                </select>
+                <label for="quantity">quantity</label>
+            </div>
+        </div>
+
+        {{!-- UsageCase --}}
+        <div class="row">
+            <div class="input-field">
+                <h6>Usage Case:</h6>
+                {{!-- <textarea id="body" name="body"></textarea> --}}
+                <div class="input-field">
+                    <select id="usageCase" name="UsageCase">
+                        {{#select drug.usageCase}}
+                        <option value="Malaria" selected>Malaria</option>
+                        <option value="Cancer">Cancer</option>
+                        <option value="Typhoid">Typhoid</option>
+                        <option value="LungDisease">LungDisease</option>
+                        <option value="headache">Typhoid</option>
+                        {{/select}}
+                    </select>
+                </div>
+            </div>
+
+            {{!-- submit --}}
+            <div class="row">
+                <input type="submit" value="Save" class="btn">
+                <a href="/dashboard" class="btn orange">Cancel</a>
+            </div>
+    </form>
+</div>

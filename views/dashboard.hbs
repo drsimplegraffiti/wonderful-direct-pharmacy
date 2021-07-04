@@ -1,4 +1,14 @@
 <h6>Dashboard</h6>
+
+{{!-- print --}}
+{{!-- <div id="invoice">
+    <p>Generate invoice</p>
+</div>
+<button onclick="generatePDF()">Download</button> --}}
+{{!-- print --}}
+
+
+
 <h3>Welcome {{name}}</h3>
 <p>Choose from our drug stores</p>
 {{#if drugs}}
@@ -16,12 +26,25 @@
     <tbody>
         {{#each drugs}}
         <tr>
-            <td><a href="/drugs/{{_id}}"></a>{{drugName}}</td>
+            <td><a href="/drugs/{{_id}}">{{drugName}}</a></td>
             <td>{{formatDate createdAt 'MMM Do YYYY, h:mm:ss a'}}</td>
             <td><span class="dash-status">{{jobRole}}</span></td>
             <td>{{Manufacturer}}</td>
             <td>{{quantity}}</td>
             <td>{{usageCase}}</td>
+            <td>
+                <a href="/drugs/edit/{{_id}}" class="btn btn-float">
+                    <i class="fas fa-edit"></i>
+                </a>
+
+                <form action="/drugs/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn red">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+
+            </td>
         </tr>
         {{/each}}
     </tbody>

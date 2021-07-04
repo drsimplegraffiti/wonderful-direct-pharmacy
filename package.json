@@ -16,12 +16,14 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
+    "fs-extra": "^10.0.0",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
     "mongoose": "^5.13.0",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "puppeteer": "^10.1.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
