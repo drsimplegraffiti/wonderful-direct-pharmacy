@@ -6,9 +6,11 @@ const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const methodOverride = require('method-override');
 const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const connectDB = require('./config/db');
+const User = require('./models/User');
 
 
 // Load Config
@@ -66,10 +68,19 @@ app.use(
     })
 );
 
-
 // set Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// tyler potts passport 
+passport.serializeUser(function(user, done) {
+    done(null, user.id)
+})
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user)
+    })
+})
 
 // Set global variable
 app.use(function(req, res, next) {
@@ -77,9 +88,35 @@ app.use(function(req, res, next) {
     next()
 })
 
+
+passport.use(new localStrategy(function(email, password, done) {
+    User.findOne({ email: email }, function(err, user) {
+        if (err) return done(err);
+        if (!user) return done(null, false, { message: 'Incorrect email.' });
+
+        bcrypt.compare(password, User.password, function(err, res) {
+            if (err) return done(err);
+            if (res === false) return done(null, false, { message: 'Incorrect password.' });
+
+            return done(null, User);
+        });
+    });
+}));
+
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/dashboard');
+}
+
+function isLoggedOut(req, res, next) {
+    if (!req.isAuthenticated()) return next();
+    res.redirect('/');
+}
+// tyler potts passport 
+
 //Static folder
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Routes
 app.use('/', require('./routes/index'));

@@ -1,11 +1,7 @@
-<head>
-    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-</head>
 
 
-<div id="invoice">
-    <h6>Dashboard</h6>
-    <button onclick="generatePDF()">Download</button>
+
+
 
     {{!-- print --}}
     {{!-- <div id="invoice">
@@ -13,8 +9,6 @@
     </div>
     <button onclick="generatePDF()">Download</button> --}}
     {{!-- print --}}
-
-
 
     <h3>Welcome {{name}}</h3>
     <p>Choose from our drug stores</p>
@@ -60,14 +54,3 @@
     {{/if}}
 
 
-    <script>
-        function generatePDF() {
-            const element = document.getElementById('invoice');
-            html2pdf()
-                .from(element)
-                .save();
-
-        }
-    </script>
-
-</div>
