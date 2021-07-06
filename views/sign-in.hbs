@@ -1,3 +1,7 @@
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+
 <div class="row mt-5">
     <div class="col-md-6 m-auto">
         <div class="card card-body">
@@ -9,12 +13,14 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"
-                        value="" />
+                         />
+                        <div class="email error"></div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control"
-                        placeholder="Enter Password" value="" />
+                        placeholder="Enter Password"  />
+                        <div class="password error"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block"> Sign In</button>
@@ -25,3 +31,40 @@
         </div>
     </div>
 </div>
+</div>
+</div>
+</div>
+{{!-- front end --}}
+<script>
+    const form = document.querySelector('form');
+    const emailError = document.querySelector('.email.error');
+    const passwordError = document.querySelector('.password.error');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // reset errors
+        emailError.textContent = '';
+        passwordError.textContent = '';
+        // get values
+        const email = form.email.value;
+        const password = form.password.value;
+        try {
+            const res = await fetch("/sign-in", {
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+                emailError.textContent = data.errors.email;
+                passwordError.textContent = data.errors.password;
+            }
+            if (data.user) {
+                location.assign('/dashboard');
+            }
+        }
+        catch (err) {
+            console.log(err, { message: "not working" });
+        }
+    });
+</script>

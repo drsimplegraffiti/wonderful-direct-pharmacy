@@ -108,8 +108,18 @@ router.post('/register', async(req, res) => {
 
 
 
+// @desc Login 
+router.get('/sign-in', async(req, res) => {
+    res.render('sign-in')
+})
+
+
+
 //@desc sign-in post
-router.post('/sign-in', async(req, res) => {
+router.post('/sign-in', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/sign-in?error=true'
+}), async(req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -141,8 +151,8 @@ router.post('/sign-in', async(req, res) => {
                 //         role: user.role
                 //     },
                 // });
-                console.log('working')
-                return res.redirect('/dashboard');
+
+                return res.redirect('localhost:3000/dashboard');
             }
         }
     } catch (error) {
@@ -153,11 +163,6 @@ router.post('/sign-in', async(req, res) => {
         });
     }
 
-})
-
-// @desc Login 
-router.get('/sign-in', async(req, res) => {
-    res.render('sign-in')
 })
 
 
