@@ -58,6 +58,13 @@
             },
             callback: function (data) {
                 console.log(data);
+                const reference = data.tx_ref;
+                alert("payment was successfully completed" + reference)
+            },
+            customizations: {
+                "title": "precious pharmacy",
+                "description": "payment integration",
+                "logo": "https://image.flaticon.com/icons/png/512/809/809957.png"
             }
         });
     }
