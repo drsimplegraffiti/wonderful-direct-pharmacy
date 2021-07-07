@@ -11,6 +11,9 @@ const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const connectDB = require('./config/db');
 const User = require('./models/User');
+const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const cookieParser = require('cookie-parser');
+
 
 
 // Load Config
@@ -25,6 +28,7 @@ const app = express();
 // Body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 // Method override
 app.use(methodOverride(function(req, res) {
@@ -123,7 +127,7 @@ app.use('/', require('./routes/index'));
 app.use('/', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/drugs', require('./routes/drugs'));
-// app.use('/sign-in', require('./routes/sign-in'));
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))

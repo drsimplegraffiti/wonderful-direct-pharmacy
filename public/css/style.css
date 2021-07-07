@@ -169,3 +169,11 @@ button {
 button:hover {
     background-color: #00BC7E;
 }
+
+.b {
+    padding-left: 21rem;
+}
+
+#submit {
+    background-image: linear-gradient(to bottom, #00BC7E, #108775);
+}

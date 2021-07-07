@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { requireAuth, checkUser } = require('../middleware/authMiddleware');
 const localStrategy = require('passport-local').Strategy;
-const SECRET = "boy";
+const SECRET = "net ninja secret";
 
 // Load User model
 const User = require('../models/User');
@@ -67,45 +67,16 @@ router.post('/register', async(req, res) => {
     const { email, password } = req.body;
 
     try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser)
-            return res.status(400).json({
-                message: "User already exist, please signIn.",
-            });
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(password, salt);
-        const user = new User({
-            email,
-            password: hashPassword
-        });
-
-        const createdUser = await user.save();
-        const token = await jwt.sign({
-            id: createdUser._id
-        }, SECRET, {
-            expiresIn: "2h",
-        });
-        // return res.status(201).json({
-        //     status: "success",
-        //     data: {
-        //         message: "User successfully created",
-        //         token,
-        //         userId: createdUser._id,
-        //         role: createdUser.role
-        //     },
-        // });
-        return res.redirect('/sign-in');
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            status: error,
-            data: {
-                message: "Server Error",
-            },
-        });
+        const user = await User.create({ email, password });
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(201).json({ user: user._id });
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
     }
-})
 
+})
 
 
 // @desc Login 
@@ -116,54 +87,21 @@ router.get('/sign-in', async(req, res) => {
 
 
 //@desc sign-in post
-router.post('/sign-in', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/sign-in?error=true'
-}), async(req, res) => {
-    try {
-        const { email, password } = req.body;
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({
-                // status: error,
-                error: "This email does not exist",
-            });
-        } else {
-            const confirmPassword = await bcrypt.compare(password, user.password);
-            if (!confirmPassword) {
-                return res.status(400).json({
-                    status: "error",
-                    data: {
-                        message: "User password is incorrect",
-                    },
-                });
-            } else {
-                const token = await jwt.sign({
-                    id: user._id
-                }, SECRET, {
-                    expiresIn: "2h",
-                });
-                // return res.status(200).json({
-                //     status: "success",
-                //     data: {
-                //         token,
-                //         userId: user._id,
-                //         role: user.role
-                //     },
-                // });
+router.post('/sign-in', async(req, res) => {
+    const { email, password } = req.body;
 
-                return res.redirect('localhost:3000/dashboard');
-            }
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            status: error,
-            error: new Error("Server Error"),
-        });
+    try {
+        const user = await User.login(email, password);
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(200).json({ user: user._id });
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
     }
 
 })
+
 
 
 
@@ -199,6 +137,14 @@ router.post('/forgot-password', (req, res, next) => {
     console.log(link)
     res.send('password reset link has been sent to your email...')
 })
+
+
+// Reset password
+router.get('/reset-password', (req, res) => {
+    res.render('reset-password')
+})
+
+
 
 // Reset password
 router.get('/reset-password/:id/:token', (req, res, next) => {
