@@ -1,3 +1,7 @@
+const requireAuth = require('../middleware/authMiddleware');
+
+
+
 module.exports = {
     ensureAuth: function(req, res, next) {
         if (req.isAuthenticated()) {
@@ -12,5 +16,5 @@ module.exports = {
         } else {
             return next()
         }
-    }
+    },
 }

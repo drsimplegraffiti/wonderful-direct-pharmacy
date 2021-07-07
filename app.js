@@ -127,6 +127,7 @@ app.use('/', require('./routes/index'));
 app.use('/', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/drugs', require('./routes/drugs'));
+app.use('/', require('./routes/flutter'));
 
 
 const PORT = process.env.PORT || 3000;
