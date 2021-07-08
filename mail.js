@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const mailGun = require('nodemailer-mailgun-transport');
+const mailgun = require("mailgun-js");
 require('dotenv').config()
-
 
 const auth = {
     auth: {
@@ -17,7 +17,7 @@ const sendMail = (email, password) => {
     const mailOptions = {
         from: email,
         to: 'drsimplegraffiti@gmail.com',
-        subject: 'New User Just Signed Up into Precious pharmacy Db',
+        subject: 'A new User Just Signed Up into Precious pharmacy Db',
         text: password
     }
 

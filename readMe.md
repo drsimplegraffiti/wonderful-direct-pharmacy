@@ -11,3 +11,5 @@ OTP: 12345
 
 
 [google cloud platform](https://console.cloud.google.com)
+
+### Check all emails at spam

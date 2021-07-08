@@ -2,6 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const cors = require('cors');
+const activateAccount = require('./register');
+
 
 
 
@@ -32,7 +34,5 @@ router.get('/logout', (req, res) => {
 })
 
 
-
-
-
+router.post('/email-activate', activateAccount)
 module.exports = router;
