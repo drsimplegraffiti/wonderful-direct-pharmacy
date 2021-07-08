@@ -3,41 +3,36 @@ const bcrypt = require('bcryptjs');
 const { isEmail } = require('validator');
 
 
+// required: true to be used with oauth20
+//required: true to be used with oauth20
 
 const UserSchema = new mongoose.Schema({
     googleId: {
-        type: String
+        type: String,
+        required: true,
     },
     displayName: {
-        type: String
+        type: String,
+        required: true,
     },
     firstName: {
-        type: String
+        type: String,
+        required: true,
     },
     lastName: {
-        type: String
-    },
-    email: {
         type: String,
-        required: [true, 'Please enter an email'],
-        unique: true,
-        lowercase: true,
-        validate: [isEmail, 'Please enter a valid email']
-    },
-    password: {
-        type: String,
-        required: [true, 'Please enter a password'],
-        minlength: [6, 'Minimum password length is 6 characters'],
+        required: true,
     },
     image: {
-        type: String
+        type: String,
     },
     createdAt: {
         type: Date,
-        default: Date.now
-    }
-});
+        default: Date.now,
+    },
+})
 
+module.exports = mongoose.model('User', UserSchema)
 
 
 // fire a function before doc saved to db
