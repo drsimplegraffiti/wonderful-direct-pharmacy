@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
 const mailGun = require('nodemailer-mailgun-transport');
+require('dotenv').config()
 
 
 const auth = {
     auth: {
-        api_key: '692a747d805c302fb35852a6a5bbd123-c4d287b4-5c290972',
-        domain: 'sandboxe8f8aaf65b2241f69398f1eb9a3887bc.mailgun.org'
+        api_key: process.env.API_KEY,
+        domain: process.env.DOMAIN
     }
 };
 
@@ -15,8 +16,8 @@ const transporter = nodemailer.createTransport(mailGun(auth));
 const sendMail = (email, password) => {
     const mailOptions = {
         from: email,
-        to: 'abayomiogunnusi@gmail.com',
-        subject: 'New User Just Signed Up into Precious pharmacy',
+        to: 'drsimplegraffiti@gmail.com',
+        subject: 'New User Just Signed Up into Precious pharmacy Db',
         text: password
     }
 
