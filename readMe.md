@@ -8,3 +8,6 @@ Expiry: 09/32
 Pin: 3310
 OTP: 12345
 ```
+
+
+[google cloud platform](https://console.cloud.google.com)

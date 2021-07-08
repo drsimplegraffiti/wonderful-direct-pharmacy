@@ -2,14 +2,22 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const { requireAuth, checkUser } = require('../middleware/authMiddleware');
+const cors = require('cors');
+
 
 // Drug model
 const Drug = require('../models/Drug');
+//cors option
+var whitelist = ['http://localhost:3000/dashboard', 'http://localhost:3000/drugs']
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 
 // @desc    Login/Landing Page
 // @route   GET /
-router.get('/', checkUser, ensureGuest, (req, res) => {
+router.get('/', cors(corsOptions), checkUser, ensureGuest, (req, res) => {
     res.render('login', {
         layout: 'login'
     })
@@ -19,7 +27,7 @@ router.get('/', checkUser, ensureGuest, (req, res) => {
 // @desc    Dashboard
 // @route   GET /dashboard
 
-router.get('/dashboard', checkUser, ensureAuth, async(req, res) => {
+router.get('/dashboard', cors(corsOptions), checkUser, ensureAuth, async(req, res) => {
     try {
         const drugs = await Drug.find({ user: req.user.id }).lean()
         res.render('dashboard', {

@@ -27,8 +27,32 @@
         </div>
     </div>
 </div>
-{{!-- register logic --}}
+{{!-- form submission to email --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('form').on('submit', (e) => {
+        e.preventDefault();
+        const email = $('#email').val().trim();
+        const password = $('#password').val().trim();
 
+        const data = {
+            email,
+            password
+        };
+
+        $.post("/email", data, function () {
+            console.log('server receive our data');
+        })
+    })
+</script>
+
+
+
+
+
+{{!-- form submission to email --}}
+
+{{!-- register logic --}}
 
 <script>
     const form = document.querySelector('form');

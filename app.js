@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const sendMail = require('./mail');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -13,6 +14,8 @@ const connectDB = require('./config/db');
 const User = require('./models/User');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
 
 
 
@@ -25,10 +28,35 @@ require('./config/passport')(passport)
 
 const app = express();
 
+//cors option
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+
+app.use((req, res, next) => {
+    res.on('header', function() {
+        console.trace('HEADERS GOING TO BE WRITTEN');
+    });
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (res.header === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({ message: "header working" })
+    }
+    next();
+
+})
+
+
 // Body parser
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+
 
 // Method override
 app.use(methodOverride(function(req, res) {
@@ -122,12 +150,29 @@ function isLoggedOut(req, res, next) {
 //Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//email delivery
+app.post('/email', (req, res) => {
+    const { email, password } = req.body;
+    console.log('Data: ', req.body);
+    sendMail(email, password, function(err, data) {
+        if (err) {
+            res.status(500).json({
+                message: err.message || 'Internal Error'
+            });
+        } else {
+            res.json({ message: 'Email sent!!!' })
+        }
+    });
+    res.json({ message: 'Message received!!!' })
+})
+
 // Routes
-app.use('/', require('./routes/index'));
-app.use('/', require('./routes/register'));
-app.use('/auth', require('./routes/auth'));
-app.use('/drugs', require('./routes/drugs'));
-app.use('/', require('./routes/flutter'));
+app.use('/', cors(corsOptions), require('./routes/index'));
+app.use('/', cors(corsOptions), require('./routes/register'));
+app.use('/auth', cors(corsOptions), require('./routes/auth'));
+app.use('/drugs', cors(corsOptions), require('./routes/drugs'));
+app.use('/', cors(corsOptions), require('./routes/flutter'));
 
 
 const PORT = process.env.PORT || 3000;

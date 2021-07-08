@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const { requireAuth, checkUser } = require('../middleware/authMiddleware');
 const localStrategy = require('passport-local').Strategy;
 const SECRET = "net ninja secret";
@@ -84,16 +85,22 @@ router.get('/sign-in', async(req, res) => {
     res.render('sign-in')
 })
 
+//cors option
+const corsOptions = {
+    origin: 'http://localhost:3000/dashboard',
+    optionsSuccessStatus: 200,
+}
 
 
 //@desc sign-in post
-router.post('/sign-in', async(req, res) => {
+router.post('/sign-in', cors(corsOptions), async(req, res) => {
     const { email, password } = req.body;
 
     try {
         const user = await User.login(email, password);
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        // res.redirect('http://localhost:3000/dashboard')
         res.status(200).json({ user: user._id });
     } catch (err) {
         const errors = handleErrors(err);
@@ -101,10 +108,6 @@ router.post('/sign-in', async(req, res) => {
     }
 
 })
-
-
-
-
 
 
 //PASSWORD FORGOT AND RESET

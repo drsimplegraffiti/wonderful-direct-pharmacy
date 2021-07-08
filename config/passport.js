@@ -1,6 +1,8 @@
-const GoogleStrategy = require('passport-google-oauth20').Strategy
-const mongoose = require('mongoose')
-const User = require('../models/User')
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const mongoose = require('mongoose');
+const User = require('../models/User');
+const cors = require('cors');
+
 
 module.exports = function(passport) {
     passport.use(
