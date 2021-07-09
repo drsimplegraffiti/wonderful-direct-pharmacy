@@ -171,6 +171,7 @@ app.use('/', require('./routes/index'));
 app.use('/', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/drugs', require('./routes/drugs'));
+
 // app.use('/', cors(corsOptions), require('./routes/flutter'));
 
 
