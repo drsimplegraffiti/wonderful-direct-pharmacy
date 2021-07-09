@@ -27,8 +27,12 @@ p {
 }
 
 .btn {
-    text-align: center;
-    margin: auto;
+    /* width: 77.2rem; */
+    font-weight: bold;
+}
+
+.bun {
+    width: 30px;
 }
 
 
@@ -164,6 +168,7 @@ button {
     border-radius: 10px;
     border: white;
     cursor: pointer;
+    display: inline-block;
 }
 
 button:hover {
@@ -171,7 +176,8 @@ button:hover {
 }
 
 .b {
-    padding-left: 21rem;
+    padding-left: 10rem;
+    padding-right: 4rem;
 }
 
 #submit {

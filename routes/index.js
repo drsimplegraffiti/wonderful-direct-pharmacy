@@ -17,7 +17,7 @@ const corsOptions = {
 
 // @desc    Login/Landing Page
 // @route   GET /
-router.get('/', cors(corsOptions), checkUser, ensureGuest, (req, res) => {
+router.get('/', checkUser, ensureGuest, (req, res) => {
     res.render('login', {
         layout: 'login'
     })
@@ -27,12 +27,12 @@ router.get('/', cors(corsOptions), checkUser, ensureGuest, (req, res) => {
 // @desc    Dashboard
 // @route   GET /dashboard
 
-router.get('/dashboard', cors(corsOptions), checkUser, ensureAuth, async(req, res) => {
+router.get('/dashboard', checkUser, ensureAuth, async(req, res) => {
     try {
         const drugs = await Drug.find({ user: req.user.id }).lean()
         res.render('dashboard', {
             name: req.user.firstName,
-            drugs
+            drugs,
         })
     } catch (err) {
         console.error(err)

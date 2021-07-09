@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const { isEmail } = require('validator');
+// const bcrypt = require('bcryptjs');
+// const { isEmail } = require('validator');
 
 
 // required: true to be used with oauth20

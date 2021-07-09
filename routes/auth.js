@@ -5,12 +5,9 @@ const cors = require('cors');
 const activateAccount = require('./register');
 
 
-
-
-
 // @desc    Auth with Google
 // @route   GET /auth/google
-router.get('/google', cors(), passport.authenticate('google', { scope: ['profile'] }))
+router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
 
 
 // @desc    Google auth callback

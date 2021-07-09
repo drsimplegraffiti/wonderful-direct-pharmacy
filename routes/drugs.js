@@ -31,7 +31,7 @@ router.post('/', ensureAuth, async(req, res) => {
 // @route   GET /drugs/add
 router.get('/', ensureAuth, async(req, res) => {
     try {
-        const drugs = await Drug.find({})
+        const drugs = await Drug.find({ jobRole: 'guest, admin, agent' })
             .populate('user')
             .sort({ createdAt: 'desc' })
             .lean()
@@ -57,9 +57,14 @@ router.get('/:id', ensureAuth, async(req, res) => {
             return res.render('error/404')
         }
 
-        res.render('drugs/show', {
-            drug
-        })
+        if (drug.user._id != req.user.id && drug == 'admin, agent') {
+            res.render('error/404')
+        } else {
+            res.render('drugs/show', {
+                drug
+            })
+        }
+
     } catch (err) {
         console.error(err)
         res.render('error/404')
@@ -91,10 +96,6 @@ router.get('/edit/:id', ensureAuth, async(req, res) => {
         console.error(err)
         return res.render('error/500')
     }
-
-
-
-
 })
 
 // @desc    Update drug

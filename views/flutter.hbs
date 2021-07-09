@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Precious Pharmacy | Flutter Payment</title>
     <link rel="stylesheet" href="/style.css">
 </head>
@@ -13,8 +14,8 @@
     <section class="main-content">
         <h3>Payment channel</h3>
         <hr>
-
-        <form action="" method="POST" id="payform">
+<div class="row">
+    <form action="" method="POST" id="payform" class="col s12">
             <label for="name">Full Name</label>
             <input type="text" name="fullName" id="fullName" placeholder="Enter full name here...." required>
 
@@ -30,9 +31,11 @@
             <button type="button" onClick="makePayment()">Make Payment</button>
 
         </form>
+    </div>
     </section>
 
     <script src="https://checkout.flutterwave.com/v3.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
