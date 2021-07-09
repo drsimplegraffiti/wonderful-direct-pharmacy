@@ -4,9 +4,9 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const { requireAuth, checkUser } = require('../middleware/authMiddleware');
 const cors = require('cors');
 
-
 // Drug model
 const Drug = require('../models/Drug');
+
 //cors option
 var whitelist = ['http://localhost:3000/dashboard', 'http://localhost:3000/drugs']
 const corsOptions = {
@@ -40,7 +40,6 @@ router.get('/dashboard', checkUser, ensureAuth, async(req, res) => {
     }
 
 })
-
 
 
 module.exports = router;

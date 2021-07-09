@@ -31,11 +31,10 @@ router.post('/', ensureAuth, async(req, res) => {
 // @route   GET /drugs/add
 router.get('/', ensureAuth, async(req, res) => {
     try {
-        const drugs = await Drug.find({ jobRole: 'admin, agent' })
+        const drugs = await Drug.find({ jobRole: 'guest' })
             .populate('user')
             .sort({ createdAt: 'desc' })
             .lean()
-
         res.render('drugs/index', {
             drugs,
         })
@@ -56,11 +55,14 @@ router.get('/:id', ensureAuth, async(req, res) => {
         if (!drug) {
             return res.render('error/404')
         }
-        res.render('drugs/show', {
-            drug
-        })
+        if (drug.user._id != req.user.id && drug.jobRole == 'guest') {
+            res.render('error/404')
+        } else {
+            res.render('drugs/show', {
+                drug
+            })
 
-
+        }
     } catch (err) {
         console.error(err)
         res.render('error/404')

@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 
 
 // Body parser
-app.use(cors());
+// app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
@@ -74,7 +74,6 @@ if (process.env.NODE_ENV === 'development') {
 
 // Handlebars helpers
 const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers/hbs');
-
 
 // view engine @handlebars
 app.engine('.hbs', exphbs({
@@ -168,11 +167,11 @@ app.post('/email', (req, res) => {
 })
 
 // Routes
-app.use('/', cors(corsOptions), require('./routes/index'));
-app.use('/', cors(corsOptions), require('./routes/register'));
-app.use('/auth', cors(corsOptions), require('./routes/auth'));
-app.use('/drugs', cors(corsOptions), require('./routes/drugs'));
-app.use('/', cors(corsOptions), require('./routes/flutter'));
+app.use('/', require('./routes/index'));
+app.use('/', require('./routes/register'));
+app.use('/auth', require('./routes/auth'));
+app.use('/drugs', require('./routes/drugs'));
+// app.use('/', cors(corsOptions), require('./routes/flutter'));
 
 
 const PORT = process.env.PORT || 3000;
