@@ -2,13 +2,13 @@
 <div class="row">
     {{#each drugs}}
     <div class="col s12 m4">
-        <div class="card">
+        <div class="card waves-effect waves-block waves-light">
             <div class="card-image">
-                {{{editIcon user ../user _id}}}
+                {{!-- {{{editIcon user ../user _id}}} --}}
             </div>
             <div class="card-content center-align">
                 <h5>{{drugName}}</h5>
-                <p>{{ stripTags (truncate usageCase 150)}}</p>
+                <p>{{usageCase}}</p>
                 <br>
                 <div class="chip">
                     <img src="{{user.image}}" alt="">

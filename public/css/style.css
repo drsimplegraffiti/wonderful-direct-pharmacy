@@ -188,3 +188,15 @@ button:hover {
     padding-top: 3rem;
     padding-left: 22rem;
 }
+
+.card {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    /* max-width: 20rem;
+    max-height: 6rem; */
+    text-align: center;
+    justify-content: center;
+    background-size: cover;
+    resize: both;
+    /* overflow: auto; */
+}
