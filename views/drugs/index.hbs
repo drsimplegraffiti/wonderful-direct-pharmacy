@@ -1,8 +1,6 @@
 <h1>Drugs</h1>
 <div class="row">
-
     {{#each drugs}}
-
     <div class="col s12 m4">
         <div class="card">
             <div class="card-image">
@@ -10,7 +8,7 @@
             </div>
             <div class="card-content center-align">
                 <h5>{{drugName}}</h5>
-                <p>{{usageCase}}</p>
+                <p>{{ stripTags (truncate usageCase 150)}}</p>
                 <br>
                 <div class="chip">
                     <img src="{{user.image}}" alt="">
@@ -18,7 +16,7 @@
                 </div>
             </div>
             <div class="card-action center-align">
-                <a href="/drugs/{{_id}}" class="btn green">Check Drugs</a>
+                <a href="/drugs/{{_id}}" class="btn green waves-effect">Check Drugs</a>
             </div>
         </div>
     </div>
