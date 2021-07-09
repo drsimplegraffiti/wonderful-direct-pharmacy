@@ -6,19 +6,48 @@
             </h4>
 
             <form action="/register" method="POST">
+{{!-- google id --}}
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" value="" required />
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Google Id" value="" required />
                     <div class="email error"></div>
                 </div>
+                                {{!-- google id --}}
+                                
+                                
+                                {{!-- password --}}
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control"
                         placeholder="Create Password" value="" />
                     <div class="password error"></div>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-block">
+                {{!-- password --}}
+                
+                {{!-- displayName--}}
+                <div class="form-group">
+                    <label for="displayName">displayName</label>
+                    <input type="text" id="displayName" name="displayName" class="form-control" placeholder="Create displayName"
+                        value="" />
+                </div>
+                {{!-- displayName --}}
+                
+                {{!-- firstName--}}
+                <div class="form-group">
+                    <label for="firstName">firstName</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Create firstName" value="" />
+                </div>
+                {{!-- firstName --}}
+                
+                {{!-- lastName--}}
+                <div class="form-group">
+                    <label for="lastName">lastName</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Create lastName" value="" />
+                </div>
+                {{!-- lastName --}}
+                
+                
+                <button type="submit" class="btn btn-primary btn-block  waves-effect waves-light">
                     Register
                 </button>
             </form>
@@ -34,10 +63,13 @@
         e.preventDefault();
         const email = $('#email').val().trim();
         const password = $('#password').val().trim();
+        const displayName = $('#displayName').val().trim();
+        const firstName = $('#firstName').val().trim();
+        const lastName = $('#lastName').val().trim();
 
         const data = {
             email,
-            password
+            password,
         };
 
         $.post("/email", data, function () {
@@ -67,11 +99,14 @@
             // get values
             const email = form.email.value;
             const password = form.password.value;
+        const displayName = form.displayName.value;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
 
             try {
                 const res = await fetch('/register', {
                     method: 'POST',
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ email, password, displayName, firstName, lastName }),
                     headers: { 'Content-Type': 'application/json' }
                 });
                 const data = await res.json();

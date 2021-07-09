@@ -200,3 +200,12 @@ button:hover {
     resize: both;
     /* overflow: auto; */
 }
+
+.footer-copyright {
+    background-image: linear-gradient(to bottom, #00BC7E, #108775);
+    text-align: center;
+}
+
+.page-footer {
+    background-image: linear-gradient(to bottom, #00BC7E, #108775);
+}

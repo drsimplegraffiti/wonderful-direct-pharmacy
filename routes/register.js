@@ -77,10 +77,9 @@ const mg = mailgun({ apiKey: process.env.API_KEY, domain: process.env.DOMAIN });
 
 // Register
 router.post('/register', async(req, res) => {
-    const { email, password } = req.body;
+    const { email, displayName, firstName, lastName } = req.body;
 
     try {
-
         const existingUser = await User.findOne({ email });
         if (existingUser)
             return res.status(400).json({
@@ -88,7 +87,7 @@ router.post('/register', async(req, res) => {
             });
 
 
-        const user = await User.create({ email, password });
+        const user = await User.create({ email, password, displayName, firstName, lastName });
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(201).json({ user: user._id });
