@@ -1,3 +1,5 @@
+<video src="/pexels-rodnae-productions-8580945.mp4" id="myvideo" autoplay loop></video>
+
 <div class="row mt-5">
     <div class="col-md-6 m-auto">
         <div class="card card-body">
@@ -9,7 +11,7 @@
 {{!-- google id --}}
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Google Id" value="" required />
+                    <input type="email" id="googleId" name="googleId" class="form-control" placeholder="Google Id" value="" required />
                     <div class="email error"></div>
                 </div>
                                 {{!-- google id --}}
@@ -61,11 +63,9 @@
 <script>
     $('form').on('submit', (e) => {
         e.preventDefault();
-        const email = $('#email').val().trim();
+        const email = $('#googleId').val().trim();
         const password = $('#password').val().trim();
-        const displayName = $('#displayName').val().trim();
-        const firstName = $('#firstName').val().trim();
-        const lastName = $('#lastName').val().trim();
+
 
         const data = {
             email,
@@ -97,8 +97,8 @@
             emailError.textContent = '';
             passwordError.textContent = '';
             // get values
-            const email = form.email.value;
-            const password = form.password.value;
+        const googleId = form.googleId.value;
+        const password = form.password.value;
         const displayName = form.displayName.value;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
@@ -106,13 +106,13 @@
             try {
                 const res = await fetch('/register', {
                     method: 'POST',
-                    body: JSON.stringify({ email, password, displayName, firstName, lastName }),
+                    body: JSON.stringify({ googleId, password, displayName, firstName, lastName }),
                     headers: { 'Content-Type': 'application/json' }
                 });
                 const data = await res.json();
                 console.log(data);
                 if (data.errors) {
-                    emailError.textContent = data.errors.email;
+                    emailError.textContent = data.errors.googleId;
                     passwordError.textContent = data.errors.password;
                 }
                 if (data.user) {

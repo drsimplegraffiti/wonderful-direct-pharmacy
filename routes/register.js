@@ -77,7 +77,7 @@ const mg = mailgun({ apiKey: process.env.API_KEY, domain: process.env.DOMAIN });
 
 // Register
 router.post('/register', async(req, res) => {
-    const { email, displayName, firstName, lastName } = req.body;
+    const { email, displayName, password, firstName, lastName } = req.body;
 
     try {
         const existingUser = await User.findOne({ email });

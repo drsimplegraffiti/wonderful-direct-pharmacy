@@ -1,3 +1,6 @@
+<video src="/pexels-maksim-goncharenok-6067806.mp4" id="myvideo" autoplay loop></video>
+<div class="overlay"></div>
+
 <div class="container-signin">
     <div class="card">
         <div class="card-content">
@@ -11,8 +14,8 @@
 
             <form action="/sign-in" method="POST">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required />
+                    <label for="googleId">Email</label>
+                    <input type="email" id="googleId" name="googleId" class="form-control" placeholder="Enter GoogleId Email" required />
                         <div class="email error"></div>
                 </div>
                 <div class="form-group">
@@ -50,13 +53,13 @@
         emailError.textContent = '';
         passwordError.textContent = '';
         // get values
-        const email = form.email.value;
+        const googleId = form.googleId.value;
         const password = form.password.value;
 
         try {
             const res = await fetch('/sign-in', {
                 method: 'POST',
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ googleId, password }),
                 headers: { 'Content-Type': 'application/json' }
             });
             const data = await res.json();
