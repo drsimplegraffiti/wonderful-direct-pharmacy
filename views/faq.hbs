@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wonderful Direct | FAQS</title>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.faq_question').click(function () {
+
+                if ($(this).parent().is('.open')) {
+                    $(this).closest('.faq').find('.faq_answer_container').animate({ 'height': '0' }, 500);
+                    $(this).closest('.faq').removeClass('open');
+
+                } else {
+                    var newHeight = $(this).closest('.faq').find('.faq_answer').height() + 'px';
+                    $(this).closest('.faq').find('.faq_answer_container').animate({ 'height': newHeight }, 500);
+                    $(this).closest('.faq').addClass('open');
+                }
+            });
+        });
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <!-- HTML -->
+    <div class="faq_container">
+        <div class="faq">
+            <div class="faq_question">Our Location: Where can you find us or where are we located?</div>
+            <div class="faq_answer_container">
+                <div class="faq_answer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ut
+                    porro fuga debitis id animi similique eligendi qui eveniet. Voluptate.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="faq_container">
+        <div class="faq">
+            <div class="faq_question">Payment Channel: What payment channels do we accept? </div>
+            <div class="faq_answer_container">
+                <div class="faq_answer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ut
+                    porro fuga debitis id animi similique eligendi qui eveniet. Voluptate.</div>
+            </div>
+        </div>
+    </div>
+    <div class="faq_container">
+        <div class="faq">
+            <div class="faq_question">Return Channel: Can i return goods purchased and how can i go about it?</div>
+            <div class="faq_answer_container">
+                <div class="faq_answer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ut
+                    porro fuga debitis id animi similique eligendi qui eveniet. Voluptate.</div>
+            </div>
+        </div>
+    </div>
+    <div class="faq_container">
+        <div class="faq">
+            <div class="faq_question">Can i be an affiliate: Are there referrals benefits or franchise to connect to in
+                terms of distributions</div>
+            <div class="faq_answer_container">
+                <div class="faq_answer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ut
+                    porro fuga debitis id animi similique eligendi qui eveniet. Voluptate.</div>
+            </div>
+        </div>
+    </div>
+    <div class="faq_container">
+        <div class="faq">
+            <div class="faq_question">Do you collect cryptocurrency?</div>
+            <div class="faq_answer_container">
+                <div class="faq_answer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ut
+                    porro fuga debitis id animi similique eligendi qui eveniet. Voluptate.</div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -41,5 +41,31 @@ router.get('/dashboard', checkUser, ensureAuth, async(req, res) => {
 
 })
 
+// @desc    About-us
+// @route   GET /about
+router.get('/about', (req, res) => {
+    res.render('about')
+});
+
+
+// @desc    statistics
+// @route   GET /statistics
+router.get('/statistics', (req, res) => {
+    res.render('statistics')
+});
+
+// @desc    services
+// @route   GET /about
+router.get('/services', (req, res) => {
+    res.render('services')
+});
+
+// @desc    faq
+// @route   GET /faq
+router.get('/faq', (req, res) => {
+    res.render('faq')
+});
+
+
 
 module.exports = router;

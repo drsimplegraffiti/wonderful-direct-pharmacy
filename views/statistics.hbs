@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonderful Direct | Statistics</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+        {{!-- <div class="card"> --}}
+            <div class="card-body">
+                <h4>Statistics</h4>
+                <hr>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart"></canvas>
+            </div>
+            {{!--
+        </div> --}}
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+
+        <script>
+            const drugName = drugName;
+            const quantity = quantity;
+            const usageCase = usageCase;
+        </script>
+
+        <script>
+            let myChart = document.getElementById('myChart').getContext('2d');
+            let massPopChart = new Chart(myChart, {
+                type: 'bar',
+                data: {
+                    labels: ['Drug-Purchased', 'UsageCase', 'Quantity'],
+                    datasets: [{
+                        label: 'Drug Stats',
+                        data: [
+                            2453,
+                            3333,
+                            4544],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'],
+                        borderWidth: 1,
+                        borderColor: '#777',
+                        hoverBorderWidth: '3',
+                        hoverBorderColor: '#000'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+
+        </script>
+</body>
+
+</html>

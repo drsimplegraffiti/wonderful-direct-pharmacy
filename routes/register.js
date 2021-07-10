@@ -77,27 +77,39 @@ const mg = mailgun({ apiKey: process.env.API_KEY, domain: process.env.DOMAIN });
 
 // Register
 router.post('/register', async(req, res) => {
-    const { email, displayName, password, firstName, lastName } = req.body;
+    const { googleId, displayName, password, firstName, lastName } = req.body;
 
     try {
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ googleId });
         if (existingUser)
             return res.status(400).json({
                 message: "User already exist, please signIn.",
             });
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(password, salt);
 
-
-        const user = await User.create({ email, password, displayName, firstName, lastName });
-        const token = createToken(user._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        const user = new User({
+            googleId,
+            password: hashPassword,
+            displayName,
+            firstName,
+            lastName
+        });
+        const createdUser = await user.save();
+        const token = await jwt.sign({
+            id: createdUser._id
+        }, JWT_SECRET, {
+            expiresIn: "2h",
+        });
+        // res.redirect('/sign-in')
         res.status(201).json({ user: user._id });
 
         // email validation
-        const emailVerificationToken = jwt.sign({ email, password }, JWT_SECRET, { expiresIn: '20min' });
+        const emailVerificationToken = jwt.sign({ googleId, password }, JWT_SECRET, { expiresIn: '20min' });
         // activation email begin
         const data = {
             from: 'noreply@preciouspharmacy.com',
-            to: email,
+            to: googleId,
             subject: 'Account Activation Link',
             html: `
                 <h2>please click on link to activate your account</h2>
@@ -169,21 +181,48 @@ const corsOptions = {
 
 //@desc sign-in post
 router.post('/sign-in', cors(corsOptions), async(req, res) => {
-    const { email, password } = req.body;
-
     try {
-        const user = await User.login(email, password);
-        const token = createToken(user._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        // res.redirect('http://localhost:3000/dashboard')
-        res.status(200).json({ user: user._id });
-    } catch (err) {
-        const errors = handleErrors(err);
-        res.status(400).json({ errors });
+        const { googleId, password } = req.body;
+        const user = await User.findOne({ googleId });
+        if (!user) {
+            return res.status(400).json({
+                // status: error,
+                error: "This email does not exist",
+            });
+        } else {
+            const confirmPassword = await bcrypt.compare(password, user.password);
+            if (!confirmPassword) {
+                return res.status(400).json({
+                    status: "error",
+                    data: {
+                        message: "User password is incorrect",
+                    },
+                });
+            } else {
+                const token = await jwt.sign({
+                    id: user._id
+                }, JWT_SECRET, {
+                    expiresIn: "2h",
+                });
+                // return res.status(200).json({
+                //     status: "success",
+                //     data: {
+                //         token,
+                //         userId: user._id,
+                //         role: user.googleId
+                //     },
+                // });
+                return res.redirect('/dashboard')
+            }
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: error,
+            error: new Error("Server Error"),
+        });
     }
-
 })
-
 
 //PASSWORD FORGOT AND RESET
 

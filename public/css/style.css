@@ -240,3 +240,213 @@ button:hover {
     background: var(--overlay-color);
     mix-blend-mode: overlay;
 }
+
+
+/* about page */
+
+.about.page {
+    text-align: center;
+    justify-content: center;
+    width: 60%;
+    margin: auto;
+}
+
+.about-page-heading {
+    text-align: center;
+}
+
+
+/* services */
+
+.services {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.s-heading {
+    text-align: center;
+}
+
+.s-heading h1 {
+    color: #108775;
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0px;
+}
+
+.s-heading p {
+    color: #108775;
+    font-size: 1rem;
+    margin: 5px;
+    text-align: center;
+}
+
+.s-box-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 400px;
+    padding: 20px 25px;
+    height: 400px;
+    box-sizing: border-box;
+    margin: 30px;
+    position: relative;
+    color: #fff;
+    box-shadow: 5px 10x #888888;
+    background-color: rgb(224, 252, 224);
+}
+
+.s-box img {
+    height: 75px;
+}
+
+.s-box h1 {
+    color: #108775;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.s-box p {
+    color: #108775;
+    text-align: center;
+}
+
+.s-btn {
+    width: 140px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #108775;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #108775;
+    margin-top: 10px;
+}
+
+.bar {
+    width: 100px;
+    height: 6px;
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translateX(-50%);
+    background-color: #108775;
+    border-radius: 0px 0px 10px 10px;
+    display: none;
+    animation: bar 0.5s;
+}
+
+.s-box:hover {
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.08);
+    transition: all ease 0.3s;
+}
+
+.s-btn:hover {
+    background-color: #108775;
+    border: 1px solid #108775;
+    color: #FFFFFF;
+    transition: all ease 0.3s;
+}
+
+.s-box:hover .bar {
+    display: block;
+}
+
+
+/* faq */
+
+.faq_question {
+    margin: 0px;
+    padding: 0px 0px 5px 0px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.faq_answer_container {
+    height: 0px;
+    overflow: hidden;
+    padding: 0px;
+}
+
+.faq_container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: #108775;
+    padding: 2rem;
+    color: #fff;
+}
+
+@keyframes bar {
+    0% {
+        width: 0px;
+    }
+    100% {
+        width: 100px;
+    }
+}
+
+@media(max-width:1050px) {
+    .s-box-container {
+        flex-wrap: wrap;
+    }
+    .services {
+        height: auto;
+    }
+    .s-heading {
+        margin: 15px;
+    }
+    .s-box {
+        flex-grow: 1;
+    }
+}
+
+
+/* mynav */
+
+.my-nav {
+    opacity: 0.4;
+    background-color: #424242;
+    z-index: -40;
+    /* padding: 0.8rem; */
+}
+
+.my-nav-ul a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    z-index: 40;
+    font-family: 'Raleway';
+}
+
+.my-nav-ul {
+    display: flex;
+    flex: 1 1 10rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* flutter buutton */
+
+.flutter-button {
+    background-color: #108775;
+    padding: 0.5rem;
+    color: #fff;
+    border-radius: 10px;
+}

@@ -1,46 +1,44 @@
+<h3>Welcome {{name}}</h3>
+<p>Choose from our drug stores</p>
+{{#if drugs}}
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Drug Name</th>
+            <th>Time Dispensed</th>
+            <th>Role</th>
+            <th>Manufacturer</th>
+            <th>Quantity</th>
+            <th>UsageCase</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each drugs}}
+        <tr>
+            <td><a href="/drugs/{{_id}}">{{drugName}}</a></td>
+            <td>{{formatDate createdAt 'MMM Do YYYY, h:mm:ss a'}}</td>
+            <td><span class="dash-status">{{jobRole}}</span></td>
+            <td>{{Manufacturer}}</td>
+            <td>{{quantity}}</td>
+            <td>{{usageCase}}</td>
+            <td>
+                <a href="/drugs/edit/{{_id}}" class="btn btn-float">
+                    <i class="fas fa-edit"></i>
+                </a>
 
-
-    <h3>Welcome {{name}}</h3>
-    <p>Choose from our drug stores</p>
-    {{#if drugs}}
-    <table class="striped">
-        <thead>
-            <tr>
-                <th>Drug Name</th>
-                <th>Time Dispensed</th>
-                <th>Role</th>
-                <th>Manufacturer</th>
-                <th>Quantity</th>
-                <th>UsageCase</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each drugs}}
-            <tr>
-                <td><a href="/drugs/{{_id}}">{{drugName}}</a></td>
-                <td>{{formatDate createdAt 'MMM Do YYYY, h:mm:ss a'}}</td>
-                <td><span class="dash-status">{{jobRole}}</span></td>
-                <td>{{Manufacturer}}</td>
-                <td>{{quantity}}</td>
-                <td>{{usageCase}}</td>
-                <td>
-                    <a href="/drugs/edit/{{_id}}" class="btn btn-float">
-                        <i class="fas fa-edit"></i>
-                    </a>
-
-                    <form action="/drugs/{{_id}}" method="POST" id="delete-form">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn red">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </form>
+                <form action="/drugs/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn red">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
                 </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    {{else}}
-    <p>You have not selected any drug</p>
-    {{/if}}
+                </tr>
+                {{/each}}
+                </tbody>
+                </table>
+                {{else}}
+                <p>You have not selected any drug</p>
+                {{/if}}
 
 {{> _footer}}
