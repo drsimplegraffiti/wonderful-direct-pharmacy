@@ -63,7 +63,9 @@ OTP: 12345
 
 ### Check all emails at spam
 
-  CKEDITOR.replace('body', {plugins: 'wysiwgarea, toolbar, basicstyles, link'
-})
+  <!-- CKEDITOR.replace('body', {plugins: 'wysiwgarea, toolbar, basicstyles, link'
+}) -->
+
+[emoji](https://getemoji.com/)
 
 

@@ -1,10 +1,101 @@
 <head>
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+<button class=" pdf waves-effect waves-light" onclick="generatePDF()">Generate Invoice</button><a href="/flutter"
+    class="flutter-button">Make Payment</a>
+
 <div id="invoice">
-    <h6>Dashboard</h6>
-    <button class="waves-effect waves-light" onclick="generatePDF()">Generate Pdf</button>
-    <a href="/flutter" class="flutter-button">Make Payment</a>
+    {{!-- <h6>Dashboard</h6> --}}
+    
+    
+    
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="invoice-title">
+                <h2>Wonderful direct Sales Invoice</h2>
+                <h3 class="pull-right">Cleared by {{{drug.jobRole}}} # 12345</h3>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-6">
+                    <address>
+                        <strong>Billed To:</strong><br>
+                        John Smith<br>
+                        1234 Main<br>
+                        Apt. 4B<br>
+                        Springfield, ST 54321
+                    </address>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <address>
+                        <strong>Shipped To:</strong><br>
+                        {{{editIcon drug.user user drug._id false}}} <br>
+                        {{drug.user.firstName}} {{drug.user.lastName}} <br>
+                        <img src="{{drug.user.image}}" class="circle responsive-img img-tiny"> <br>
+                        {{!-- Jane Smith<br>
+                        1234 Main<br> --}}
+                        Apt. 4B<br>
+                        Springfield, ST 54321
+                    </address>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <address>
+                        <strong>Payment Method:</strong><br>
+                        Master Card ending **** ****<br>
+                        {{drug.user.displayName}}
+                    </address>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <address>
+                        <strong>Order Date:</strong><br>
+                        {{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}<br><br>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Order summary </strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td><strong>Drug Name</strong></td>
+                                    <td class="text-center"><strong>Usage Case</strong></td>
+                                    <td class="text-center"><strong>Quantity</strong></td>
+                                    <td class="text-right"><strong>Totals</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                    <td>{{drug.drugName}}</td>
+                                    <td class="text-center">{{{drug.usageCase}}}</td>
+                                    <td class="text-center">{{{drug.quantity}}}</td>
+                                    <td class="text-right">......</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    {{!--
 <div class="row">
     <div class="col s12 m8">
         <h3>{{drug.drugName}}
@@ -30,7 +121,14 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
+
+
+
+
+{{!-- script --}}
 <script>
     function generatePDF() {
         const element = document.getElementById('invoice');
@@ -42,3 +140,4 @@
 </script>
 
 </div>
+{{!-- bootsnip --}}

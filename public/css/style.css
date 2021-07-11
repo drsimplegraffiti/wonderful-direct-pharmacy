@@ -392,6 +392,11 @@ button:hover {
     color: #fff;
 }
 
+.pdf {
+    margin-top: 1rem;
+    color: #fff;
+}
+
 @keyframes bar {
     0% {
         width: 0px;
@@ -426,6 +431,10 @@ button:hover {
     /* padding: 0.8rem; */
 }
 
+.my-nav a {
+    border-radius: 10px;
+}
+
 .my-nav-ul a {
     color: #fff;
     font-weight: bold;
@@ -446,7 +455,21 @@ button:hover {
 
 .flutter-button {
     background-color: #108775;
-    padding: 0.5rem;
+    padding: 1rem;
     color: #fff;
     border-radius: 10px;
+    margin-left: 1rem;
+}
+
+.flutter-button a {
+    margin-top: 5rem;
+}
+
+.resized {
+    width: 15rem !important;
+    height: 10rem !important;
+    /* padding: 3rem !important; */
+    margin-bottom: 10rem !important;
+    margin-top: 0.1rem;
+    padding: 0px 2px 0px 2px !important;
 }
