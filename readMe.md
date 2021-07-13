@@ -1,5 +1,7 @@
 # Wonderful Direct Management System
 ## Author: Abayomi Ogunnusi
+![land page wonderful direct](https://user-images.githubusercontent.com/70065792/125471040-f0056686-88a2-4014-b9d6-e4d8d1c3d67c.JPG)
+
 
 **FEATURES**
 * Chief editor can:
