@@ -3,6 +3,10 @@
     --overlay-color: #0a5a565e;
 }
 
+.grey {
+    text-decoration: none !important;
+}
+
 p {
     margin: 10px 0 !important;
 }
@@ -40,23 +44,6 @@ p {
     width: 30px;
 }
 
-
-/* copy */
-
-
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Fira sans', sans-serif;
-} */
-
-
-/* body {
-    background-color: #2F4960;
-    background-image: linear-gradient(to bottom right, #2F4960 10%, #102040);
-} */
-
 .app {
     display: flex;
     align-items: center;
@@ -72,17 +59,6 @@ p {
     border-radius: 16px;
     text-align: center;
 }
-
-
-/* form {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    padding: 50px 30px;
-    background-image: linear-gradient(to bottom, #00BC7E, #108775);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    border-radius: 16px;
-} */
 
 form h1 {
     color: #FFF;
@@ -183,6 +159,7 @@ button:hover {
 .b {
     padding-left: 10rem;
     padding-right: 4rem;
+    margin-top: 1.7rem;
 }
 
 #submit {
@@ -225,7 +202,7 @@ button:hover {
     min-width: 100%;
     min-height: 100%;
     z-index: -50;
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 
@@ -393,8 +370,10 @@ button:hover {
 }
 
 .pdf {
-    margin-top: 1rem;
+    margin: 0%;
+    /* margin-top: 0.4rem; */
     color: #fff;
+    text-decoration: none;
 }
 
 @keyframes bar {
@@ -441,6 +420,7 @@ button:hover {
     font-size: 1.2rem;
     z-index: 40;
     font-family: 'Raleway';
+    text-decoration: none;
 }
 
 .my-nav-ul {
@@ -448,12 +428,14 @@ button:hover {
     flex: 1 1 10rem;
     justify-content: space-around;
     align-items: center;
+    text-decoration: none;
 }
 
 
 /* flutter buutton */
 
 .flutter-button {
+    margin-top: 5rem !important;
     background-color: #108775;
     padding: 1rem;
     color: #fff;
@@ -461,8 +443,9 @@ button:hover {
     margin-left: 1rem;
 }
 
-.flutter-button a {
-    margin-top: 5rem;
+#flutter-payment {
+    margin: 1% 0%;
+    margin-top: 5% !important;
 }
 
 .resized {
@@ -472,4 +455,19 @@ button:hover {
     margin-bottom: 10rem !important;
     margin-top: 0.1rem;
     padding: 0px 2px 0px 2px !important;
+}
+
+.forgot-btn {
+    width: 10rem !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 1rem !important;
+    margin-left: 30rem !important;
+}
+
+#signIn {
+    text-align: center !important;
+    margin-left: 6rem;
 }

@@ -5,19 +5,19 @@
 
 **FEATURES**
 * Chief editor can:
-    *Add drugs
-    *Delete drugs
-    *Edit drugs
-    *Generate invoice
-    *Payment through Flutter Wave
-    *Show all drugs
+* Add drugs
+* Delete drugs
+* Edit drugs
+* Generate invoice
+* Payment through Flutter Wave
+* Show all drugs
 
 
-* login route
-    * Oauth20 (Google)
+## login route
+* Oauth20 (Google)
     
 
-[Published documentation of Wonderful Direct from postman](https://documenter.getpostman.com/view/15544476/TzeRqAMB)
+[Published documentation of Wonderful Direct from postman](https://documenter.getpostman.com/view/15544476/Tzm9ja4F)
 
 > **Tools Used**
 >Node js,
@@ -26,6 +26,7 @@
 >Architecture: Model - View - Routes
 >Environmental Variable setup
 >Handle bars
+>Mail-gun
 
 ```bash 
   npm install my-project
@@ -61,13 +62,10 @@ OTP: 12345
 ```
 
 
-[google cloud platform](https://console.cloud.google.com)
+[Google cloud console used](https://console.cloud.google.com)
 
-### Check all emails at spam
+### Note: `Check all recieved emails at spam`
 
-  <!-- CKEDITOR.replace('body', {plugins: 'wysiwgarea, toolbar, basicstyles, link'
-}) -->
 
-[emoji](https://getemoji.com/)
 
 

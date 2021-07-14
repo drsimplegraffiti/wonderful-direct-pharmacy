@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const JWT_SECRET = 'secret';
+const forgotPassword = require('../controllers/auth');
 
 
 
@@ -15,15 +16,23 @@ router.get('/forgot-password', (req, res, next) => {
 
 })
 
+
+// @ desc  PUT forgot password
+router.put('/forgot-password', forgotPassword);
+
+
 // forgot password
-router.post('/forgot-password', (req, res, next) => {
-    const { email } = req.body;
+router.put('/forgot-password', forgotPassword, (req, res, next) => {
+    const { googleId } = req.body;
 
     //Make sure user exist in db
-    if (email !== User.email) {
+    if (googleId !== User.googleId) {
         res.send('User not registered');
-        return
+        return res.send('working')
     }
+
+
+
 
     // User exist and create one time link valid for 15 minutes
     const secret = JWT_SECRET + user.password

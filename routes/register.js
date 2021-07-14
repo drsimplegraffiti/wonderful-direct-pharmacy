@@ -108,7 +108,7 @@ router.post('/register', async(req, res) => {
         const emailVerificationToken = jwt.sign({ googleId, password }, JWT_SECRET, { expiresIn: '20min' });
         // activation email begin
         const data = {
-            from: 'noreply@preciouspharmacy.com',
+            from: 'noreply@wonderfuldirectpharmacy.com',
             to: googleId,
             subject: 'Account Activation Link',
             html: `
@@ -164,8 +164,6 @@ router.post('/register', async(req, res) => {
     }
 
 })
-
-
 
 // @desc Login 
 router.get('/sign-in', async(req, res) => {
@@ -223,6 +221,14 @@ router.post('/sign-in', cors(corsOptions), async(req, res) => {
         });
     }
 })
+
+
+// Add to cart
+router.get('/add-to-cart', (req, res) => {
+    res.render('add-to-cart')
+})
+
+
 
 //PASSWORD FORGOT AND RESET
 

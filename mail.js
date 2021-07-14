@@ -17,7 +17,7 @@ const sendMail = (email, password) => {
     const mailOptions = {
         from: email,
         to: 'drsimplegraffiti@gmail.com',
-        subject: 'A new User Just Signed Up into Precious pharmacy Db',
+        subject: 'A new User Just Signed Up into Wonderful Direct Pharmacy',
         text: password
     }
 
