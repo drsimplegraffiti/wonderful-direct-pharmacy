@@ -1,5 +1,10 @@
 # Wonderful Direct Management System
 ## Author: Abayomi Ogunnusi
+
+
+https://user-images.githubusercontent.com/70065792/125588651-9c287e44-2da7-4537-8433-f794a9894f05.mp4
+
+## Landing Page Picture
 ![land page wonderful direct](https://user-images.githubusercontent.com/70065792/125471040-f0056686-88a2-4014-b9d6-e4d8d1c3d67c.JPG)
 
 
