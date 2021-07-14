@@ -65,7 +65,9 @@ Expiry: 09/32
 Pin: 3310
 OTP: 12345
 ```
-
+## To implement
+- [ ] Cart
+- [ ] Search Filter
 
 [Google cloud console used](https://console.cloud.google.com)
 
