@@ -71,7 +71,7 @@ OTP: 12345
 
 [Google cloud console used](https://console.cloud.google.com)
 
-[Heroku Login](https://git.heroku.com/wonderful-direct-pharmacy.git)
+
 ### Note: `Check all recieved emails at spam`
 
 
