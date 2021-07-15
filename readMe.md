@@ -68,6 +68,7 @@ OTP: 12345
 ## To implement
 - [ ] Cart
 - [ ] Search Filter
+- [ ] Reset and Password
 
 [Google cloud console used](https://console.cloud.google.com)
 
