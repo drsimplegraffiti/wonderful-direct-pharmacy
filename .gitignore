@@ -1,3 +1,4 @@
 node_modules
 config/config.env
 .env
+activateEmail.js

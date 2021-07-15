@@ -17,8 +17,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 
-
-
 // Load Config
 dotenv.config({ path: './config/config.env' });
 connectDB();
