@@ -1,3 +1,4 @@
+
 <video src="/pexels-maksim-goncharenok-6067806.mp4" id="myvideo" autoplay loop></video>
 <div class="overlay"></div>
 
@@ -28,10 +29,10 @@
                 <button type="submit" class="btn btn-primary btn-block" id="signIn"> Sign In</button>
             </form>
             <p class="lead mt-4">No Account?
-                <a href="/register">Create</a>
+                <a href="/register" class="link-tag">Create</a>
             </p>
-                <p class="lead mt-4">Password reset
-                    <a href="/reset-password">Reset-Password </a>
+                <p class="lead mt-4" class="link-tag">Password reset
+                    <a href="/reset-password" class="link-tag">Reset-Password </a>
                 </p>
         </div>
     </div>
@@ -60,8 +61,7 @@
             const res = await fetch('/sign-in', {
                 method: 'POST',
                 body: JSON.stringify({ googleId, password }),
-                headers: { 'Content-Type': 'application/json' }
-            });
+                headers: { 'Content-Type': "application/json" });
             const data = await res.json();
             console.log(data);
             if (data.errors) {

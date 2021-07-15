@@ -46,6 +46,11 @@
                     <option value="10" selected>10</option>
                     <option value="20">20</option>
                     <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
                     {{/select}}
                 </select>
                 <label for="quantity">quantity</label>
@@ -56,15 +61,14 @@
         <div class="row">
             <div class="input-field">
                 <h6>Usage Case:</h6>
-                {{!-- <textarea id="body" name="body"></textarea> --}}
                 <div class="input-field">
                     <select id="usageCase" name="UsageCase">
                         {{#select drug.usageCase}}
                         <option value="Malaria" selected>Malaria</option>
                         <option value="Cancer">Cancer</option>
                         <option value="Typhoid">Typhoid</option>
-                        <option value="LungDisease">LungDisease</option>
-                        <option value="headache">Typhoid</option>
+                        <option value="LungDisease">Lung Disease</option>
+                        <option value="headache">HeadAche</option>
                         {{/select}}
                     </select>
                 </div>

@@ -7,6 +7,14 @@
     text-decoration: none !important;
 }
 
+.link-tag {
+    color: rgb(199, 196, 196);
+}
+
+.link-tag:hover {
+    color: #ffffff;
+}
+
 p {
     margin: 10px 0 !important;
 }

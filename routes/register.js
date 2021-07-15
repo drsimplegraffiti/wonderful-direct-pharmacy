@@ -1,12 +1,12 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const { requireAuth, checkUser } = require('../middleware/authMiddleware');
 const localStrategy = require('passport-local').Strategy;
-const SECRET = "net ninja secret";
+// const SECRET = "net ninja secret";
 const nodemailer = require('nodemailer');
 const mailGun = require('nodemailer-mailgun-transport');
 const mailgun = require("mailgun-js");
@@ -77,7 +77,13 @@ const mg = mailgun({ apiKey: process.env.API_KEY, domain: process.env.DOMAIN });
 
 // Register
 router.post('/register', async(req, res) => {
-    const { googleId, displayName, password, firstName, lastName } = req.body;
+    const {
+        googleId,
+        displayName,
+        password,
+        firstName,
+        lastName
+    } = req.body;
 
     try {
         const existingUser = await User.findOne({ googleId });
@@ -102,7 +108,7 @@ router.post('/register', async(req, res) => {
             expiresIn: "2h",
         });
         // res.redirect('/sign-in')
-        res.status(201).json({ user: user._id });
+        // res.status(201).json({ user: user._id });
 
         // email validation
         const emailVerificationToken = jwt.sign({ googleId, password }, JWT_SECRET, { expiresIn: '20min' });
@@ -178,7 +184,7 @@ const corsOptions = {
 
 
 //@desc sign-in post
-router.post('/sign-in', cors(corsOptions), async(req, res) => {
+router.post('/sign-in', async(req, res) => {
     try {
         const { googleId, password } = req.body;
         const user = await User.findOne({ googleId });
@@ -202,15 +208,13 @@ router.post('/sign-in', cors(corsOptions), async(req, res) => {
                 }, JWT_SECRET, {
                     expiresIn: "2h",
                 });
-                // return res.status(200).json({
-                //     status: "success",
-                //     data: {
-                //         token,
-                //         userId: user._id,
-                //         role: user.googleId
-                //     },
-                // });
-                return res.redirect('/dashboard')
+                return res.status(200).json({
+                    status: "success",
+                    data: {
+                        token,
+                        userId: user._id
+                    },
+                });
             }
         }
     } catch (error) {
@@ -220,6 +224,7 @@ router.post('/sign-in', cors(corsOptions), async(req, res) => {
             error: new Error("Server Error"),
         });
     }
+
 })
 
 
