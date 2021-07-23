@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport(mailGun(auth));
 const sendMail = (email, password) => {
     const mailOptions = {
         from: email,
-        to: 'drsimplegraffiti@gmail.com',
+        to: 'abayomiogunnusi@gmail.com',
         subject: 'A new User Just Signed Up into Wonderful Direct Pharmacy',
         text: password
     }

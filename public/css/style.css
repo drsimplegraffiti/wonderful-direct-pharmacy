@@ -3,6 +3,10 @@
     --overlay-color: #0a5a565e;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .grey {
     text-decoration: none !important;
 }
